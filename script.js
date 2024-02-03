@@ -20,6 +20,7 @@ let currentState = "OFF";
 let modelImage = "";
 const consoleLogging = false;
 const useFahrenheit = false;
+const use12HourFormat = false;
 
 let telemetryObjectMain;
 
@@ -63,17 +64,7 @@ async function updateUI(telemetryObject) {
     const hours = futureTime.getHours();
     const minutes = futureTime.getMinutes();
 
-    // Determine AM or PM suffix
-    const ampm = hours >= 12 ? 'pm' : 'am';
-
-    // Format hours for 12-hour format and handle midnight/noon cases
-    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
-
-    // Ensure minutes are two digits
-    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
-
-    // Format the future time
-    const formattedTime = `${formattedHours}:${formattedMinutes}${ampm}`;
+    const formattedTime = formatTime(hours, minutes);
 
     log(formattedTime);
 
@@ -1051,4 +1042,20 @@ function convertMinutesToReadableTime(totalMinutes) {
 }
 function getTemperatureUnit() {
   return useFahrenheit ? "°F" : "°C";
+}
+
+function formatTime(hours, minutes) {
+  // Determine AM or PM suffix
+  const ampm = use12HourFormat && hours >= 12 ? 'pm' : 'am';
+
+  // Format hours for 12-hour format if use12HourFormat is true, else use 24-hour format
+  const formattedHours = use12HourFormat ? (hours % 12 === 0 ? 12 : hours % 12) : hours;
+
+  // Ensure minutes are two digits
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+  // Format the future time based on the use12HourFormat
+  const formattedTime = use12HourFormat ? `${formattedHours}:${formattedMinutes}${ampm}` : `${formattedHours}:${formattedMinutes}`;
+
+  return formattedTime;
 }
