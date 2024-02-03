@@ -19,6 +19,8 @@ const serverURL = window.location.hostname; // IP of the computer running this d
 let currentState = "OFF";
 let modelImage = "";
 const consoleLogging = false;
+const useFahrenheit = false;
+
 let telemetryObjectMain;
 
 async function retrieveData() {
@@ -46,7 +48,7 @@ async function retrieveData() {
 
 async function updateUI(telemetryObject) {
   try {
-    
+    updateTemperatureUnit();
 
     let printStatus = telemetryObject.gcode_state;
     let progressParentWidth = $("#printParentProgressBar").width();
@@ -132,7 +134,7 @@ async function updateUI(telemetryObject) {
     if (telemetryObject.bed_target_temper === 0) {
       bedTargetTemp = "OFF";
     } else {
-      bedTargetTemp = (telemetryObject.bed_target_temper * 9) / 5 + 32;
+      bedTargetTemp = convertTemp(telemetryObject.bed_target_temper);
       bedTempPercentage =
         (telemetryObject.bed_temper / telemetryObject.bed_target_temper) * 100;
     }
@@ -150,7 +152,7 @@ async function updateUI(telemetryObject) {
     $("#bedTargetTemp").text(bedTargetTemp);
 
     // Set current temp in UI
-    var bedCurrentTemp = (telemetryObject.bed_temper * 9) / 5 + 32;
+    var bedCurrentTemp = convertTemp(telemetryObject.bed_temper);
     $("#bedCurrentTemp").text(bedCurrentTemp);
     log("bedCurrentTemp = " + bedCurrentTemp);
     let progressBedParentWidth = $("#bedProgressBarParent").width();
@@ -181,7 +183,7 @@ async function updateUI(telemetryObject) {
     if (telemetryObject.nozzle_target_temper === 0) {
       nozzleTargetTemp = "OFF";
     } else {
-      nozzleTargetTemp = (telemetryObject.nozzle_target_temper * 9) / 5 + 32;
+      nozzleTargetTemp = convertTemp(telemetryObject.nozzle_target_temper);
       nozzleTempPercentage =
         (telemetryObject.nozzle_temper / telemetryObject.nozzle_target_temper) *
         100;
@@ -201,7 +203,7 @@ async function updateUI(telemetryObject) {
     $("#nozzleTargetTemp").text(nozzleTargetTemp);
 
     // Set current temp in UI
-    var nozzleCurrentTemp = (telemetryObject.nozzle_temper * 9) / 5 + 32;
+    var nozzleCurrentTemp = convertTemp(telemetryObject.nozzle_temper);
     $("#nozzleCurrentTemp").text(nozzleCurrentTemp);
 
     log("nozzleCurrentTemp = " + nozzleCurrentTemp);
@@ -235,7 +237,7 @@ async function updateUI(telemetryObject) {
     $("#chamberTargetTemp").text(chamberTargetTemp);
 
     // Set current temp in UI
-    var chamberCurrentTemp = (telemetryObject.chamber_temper * 9) / 5 + 32;
+    var chamberCurrentTemp = convertTemp(telemetryObject.chamber_temper);
     $("#chamberCurrentTemp").text(chamberCurrentTemp);
     log("chamberCurrentTemp = " + chamberCurrentTemp);
 
@@ -1032,3 +1034,21 @@ function convertMinutesToReadableTime(totalMinutes) {
     }
   
  }
+
+ function convertTemp(rawTemp) {
+  if(useFahrenheit){
+    return (rawTemp * 9) / 5 + 32;
+  }
+    return rawTemp;
+ }
+
+ function updateTemperatureUnit() {
+  const unit = getTemperatureUnit();
+  // Update the temperature unit in the HTML document
+  document.querySelectorAll('.temperature-unit').forEach(element => {
+    element.textContent = unit;
+  });
+}
+function getTemperatureUnit() {
+  return useFahrenheit ? "°F" : "°C";
+}
