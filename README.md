@@ -9,9 +9,43 @@ Screenshot (Updated version: 1/14/24):
 
 
 # BambuBoard Setup Guide
+Welcome to the BambuBoardSetup Guide. This document will walk you through the process of installing BambuBoard.
+You have two options for installation: Docker or manual installation. The Docker installation is recommended for most users, as it is easier and more reliable.
+However, if you prefer to install BambuBoard manually, you can follow the manual installation instructions below.
+The Manual Installation is crafted for Raspberry Pi, but can be used on any Linux system.
 
-Welcome to the BambuBoard Setup Guide. This document will walk you through the process of cloning the BambuBoard repository and setting up Node.js on a Raspberry Pi to run the BambuBoard dashboard.
+For the Raspberry Pi I recommend using the manual installation.
 
+# Docker Installation
+1. Install Docker, please refer to the official Docker documentation for installation instructions: https://docs.docker.com/get-docker/
+2. Navigate to the directory where you want to clone the repository:
+   ```
+   cd /path/to/directory
+   ```
+3. Clone the repository:
+   ```
+   git clone https://github.com/t0nyz0/BambuBoard.git
+   ```
+4. Change into the cloned repository's directory:
+   ```
+   cd BambuBoard
+   ```
+5. edit the docker-compose.yml file and update the environment variables to your settings. You only need to update the Values which are in [] brackets.
+   ```
+   nano docker-compose.yml
+   ```
+   Note: CTRL+X to exit nano, make sure to hit Y to confirm saving changes.
+6. Run the application:
+   ```
+   docker-compose up -d
+   ```
+   This will build the docker image, install the dependencies and start the application.
+7. Access the BambuBoard dashboard via a web browser on the same network. Open your browser and navigate to:
+   ```
+    http://[your ip]:8080
+    ```
+    Replace `8080` with the actual port number if BambuBoard runs on a different port. (Configured with the BAMBUBOARD_HTTP_PORT environment variable)
+   
 
 ## Step 1: Install Node.js
 
