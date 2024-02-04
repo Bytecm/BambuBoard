@@ -1,5 +1,5 @@
 # BambuBoard
-Bambu Dashboard for viewing real time data from the Bambu X1 Carbon 3D printer. Are you looking for the best Bambu printer OBS overlay? Scroll to the bottom, we have OBS support also! Check out a live stream here: https://www.youtube.com/channel/UChDOFv_-8TxYOfkteSlvAqA/live
+Bambu Dashboard for viewing real-time data from the Bambu X1 Carbon 3D printer. Are you looking for the best Bambu printer OBS overlay? Scroll to the bottom, we also have OBS support! Check out a live stream here: https://www.youtube.com/channel/UChDOFv_-8TxYOfkteSlvAqA/live
 
 # Screenshots:
 
@@ -9,7 +9,7 @@ Screenshot (Updated version: 1/14/24):
 
 
 # BambuBoard Setup Guide
-Welcome to the BambuBoardSetup Guide. This document will walk you through the process of installing BambuBoard.
+Welcome to the BambuBoard Setup Guide. This document will walk you through the process of installing BambuBoard.
 You have two options for installation: Docker or manual installation. The Docker installation is recommended for most users, as it is easier and more reliable.
 However, if you prefer to install BambuBoard manually, you can follow the manual installation instructions below.
 The Manual Installation is crafted for Raspberry Pi, but can be used on any Linux system.
@@ -30,7 +30,7 @@ For the Raspberry Pi I recommend using the manual installation.
    ```
    cd BambuBoard
    ```
-5. edit the docker-compose.yml file and update the environment variables to your settings. You only need to update the Values which are in [] brackets.
+5. Edit the docker-compose.yml file and update the environment variables to your settings. You only need to update the values which are in [] brackets.
    ```
    nano docker-compose.yml
    ```
@@ -111,7 +111,7 @@ To get the BambuBoard code, you need to clone its repository from GitHub:
   BambuBoard_printerAccessCode
   BambuBoard_bambuUsername
   BambuBoard_bambuPassword
-  BambuBoard_useFarenheit
+  BambuBoard_useFahrenheit
   BambuBoard_use12HourFormat
   ```
   (The config.json must exist or BambuBoard will not start)
@@ -156,7 +156,7 @@ If you encounter any issues, consider the following:
 
 ## OBS mode
 
-OBS widgets are now supported as of 1/7/24
+OBS widgets are now supported as of 2024-01-07.
 
 ![image](https://github.com/t0nyz0/BambuBoard/assets/63085518/6a8f19e5-6c56-43e4-8c77-a0e36ca53f13)
 
