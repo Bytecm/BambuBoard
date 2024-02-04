@@ -10,7 +10,7 @@ const printerSN = process.env.BAMBUBOARD_PRINTER_SN || config.BambuBoard_printer
 const printerAccessCode = process.env.BAMBUBOARD_PRINTER_ACCESS_CODE || config.BambuBoard_printerAccessCode; // Checks for PRINTER_ACCESS_CODE in environment variables, if not found uses config.printerAccessCode
 const bambuUsername = process.env.BAMBUBOARD_BAMBU_USERNAME || config.BambuBoard_bambuUsername; // Checks for BAMBU_USERNAME in environment variables, if not found uses config.bambuUsername
 const bambuPassword = process.env.BAMBUBOARD_BAMBU_PASSWORD || config.BambuBoard_bambuPassword; // Checks for BAMBU_PASSWORD in environment variables, if not found uses config.bambuPassword
-const useFarenheit = process.env.BAMBUBOARD_USE_FARENHEIT || config.BambuBoard_useFarenheit; // Checks for USE_FARENHEIT in environment variables, if not found uses config.useFarenheit
+const useFahrenheit = process.env.BAMBUBOARD_USE_FAHRENHEIT || config.BambuBoard_useFahrenheit; // Checks for USE_FAHRENHEIT in environment variables, if not found uses config.useFahrenheit
 const use12HourFormat = process.env.BAMBUBOARD_USE_12HOUR_FORMAT || config.BambuBoard_use12HourFormat; // Checks for USE_12HOUR_FORMAT in environment variables, if not found uses config.use12HourFormat
 
 //-------------------------------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ async function fetchWithTimeout(resource, options = {}, timeout = 7000) {
 
 app.get('/get-frontend-config', (req, res) => {
     res.json({
-        useFahrenheit: useFarenheit,
+        useFahrenheit: useFahrenheit,
         use12HourFormat: use12HourFormat,
         consoleLogging: consoleLogging
     });
