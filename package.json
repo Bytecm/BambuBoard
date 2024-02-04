@@ -3,6 +3,9 @@
   "version": "1.0.5",
   "description": "bambu x1 printer dashboard",
   "main": "bambuConnection.js",
+  "scripts": {
+    "start": "node bambuConnection.js"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
