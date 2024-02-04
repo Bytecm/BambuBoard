@@ -190,7 +190,6 @@ Note: If you want to EDIT notes go to this URL: http:/{server}:8080/widgets/note
 
 # Future Development Plans:
 
-- Celcius / Fahrenheit preference setting
 - Better settings configuration
 - Add AMS humidty / temp
 - AMS Active tray tracking
