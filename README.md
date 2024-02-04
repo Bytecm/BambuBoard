@@ -30,7 +30,7 @@ Node.js is required to run the BambuBoard application. Here's how to install it 
    ```
    sudo apt install nodejs
    ```
-5. (Optional) Install npm, Node.js' package manager:
+5. **Optional** Install npm, Node.js' package manager:
    ```
    sudo apt install npm
    ```
@@ -56,11 +56,32 @@ To get the BambuBoard code, you need to clone its repository from GitHub:
    ```
    cd BambuBoard
    ```
-4. Update the config.json with your settings! This is important.
+4. Create a config.json file:
    ```
-   sudo nano config.json
+   cp config.json.example config.json
+   ```
+
+5. Update the config with your settings! This is important.
+   ```
+   nano config.json
    ```
   Note: CTRL+X to exit nano, make sure to hit Y to confirm saving changes.
+
+  You can also overwrite the config with the following Environment Variables:
+  ```
+  BAMBUBOARD_API_PORT (default 3000)
+  BAMBUBOARD_HTTP_PORT (default 8080)
+  BAMBUBOARD_PRINTER_URL
+  BAMBUBOARD_PRINTER_PORT
+  BambuBoard_printerSN
+  BambuBoard_printerAccessCode
+  BambuBoard_bambuUsername
+  BambuBoard_bambuPassword
+  BambuBoard_useFarenheit
+  BambuBoard_use12HourFormat
+  ```
+  (The config.json must exist or BambuBoard will not start)
+  
 
 ## Step 3: Install Dependencies
 
@@ -77,25 +98,25 @@ To start the BambuBoard dashboard:
 
 1. Run the application:
    ```
-   node bambuConnection.js
+   npm run start
    ```
 
 ## Step 5: Accessing the Dashboard
 
 Once the application is running, you can access the BambuBoard dashboard via a web browser on the Raspberry Pi or another device on the same network. Open your browser and navigate to:
    ```
-   http://raspberrypi.local:8080
+   http://[your ip]:8080
    ```
 Replace `8080` with the actual port number if BambuBoard runs on a different port. (Configured in bambuConnection.js)
 
-Note: If this doesnt work, try IP address of Raspberry Pi.
+Note: For raspberry pi you can try raspberrypi.local instead of the IP address.
 
 ## Troubleshooting
 
 If you encounter any issues, consider the following:
 
 - Check that you have the correct permissions to clone the repository and install Node.js packages.
-- Verify that the Raspberry Pi's firewall settings are not blocking the BambuBoard application.
+- Verify that the firewall settings are not blocking the BambuBoard application.
 
 
 

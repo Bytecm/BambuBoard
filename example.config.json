@@ -1,4 +1,5 @@
 {
+  "BambuBoard_APIPort": 3000,
   "BambuBoard_httpPort": 8080,
   "BambuBoard_printerURL": "10.0.0.1",
   "BambuBoard_printerPort": "8883",

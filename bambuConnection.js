@@ -2,6 +2,7 @@
 /// Configure your settings here:
 const config = require('./config.json');
 
+const BambuBoardAPIPort = process.env.BAMBUBOARD_API_PORT || config.BambuBoard_APIPort; // Checks for API_PORT in environment variables, if not found uses config.APIPort
 const httpPort = process.env.BAMBUBOARD_HTTP_PORT || config.BambuBoard_httpPort; // Checks for HTTP_PORT in environment variables, if not found uses config.httpPort
 const printerURL = process.env.BAMBUBOARD_PRINTER_URL || config.BambuBoard_printerURL; // Checks for PRINTER_URL in environment variables, if not found uses config.printerURL
 const printerPort = process.env.BAMBUBOARD_PRINTER_PORT || config.BambuBoard_printerPort; // Checks for PRINTER_PORT in environment variables, if not found uses config.printerPort
@@ -193,9 +194,8 @@ app.get('/note', async (req, res) => {
     }
 });
 
-const PORT = 3000; // or any other port you prefer
-app.listen(PORT, () => {
-    console.log(`BambuBoard running on port ${PORT}`);
+app.listen(BambuBoardAPIPort, () => {
+    console.log(`BambuBoard running on port ${BambuBoardAPIPort}`);
 });
 
 http
